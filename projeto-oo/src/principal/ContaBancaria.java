@@ -17,9 +17,7 @@ public class ContaBancaria {
 	}
 	
 	public ContaBancaria(double saldo, String nomeTitular, int numero) {
-		if(saldo > 0) {
-			this.saldo = saldo;
-		}
+		depositar(saldo);
 		this.nomeTitular = nomeTitular;
 		this.numero = numero;
 	}
@@ -27,10 +25,6 @@ public class ContaBancaria {
 	// Métods gets e sets
 	public double getSaldo() {
 		return this.saldo;
-	}
-	
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
 	}
 
 	public String getNomeTitular() {
@@ -49,10 +43,33 @@ public class ContaBancaria {
 		this.numero = numero;
 	}
 	
-	public void sacar(double valor) {
+	public double sacar(double valor) {
 		if(valor <= this.saldo) {
 			this.saldo -= valor;
+			return valor;
+		}else {
+			System.out.println("Saldo insuficiente!");
+			return 0;
 		}
+	}
+	
+	public double sacar(double valor, double taxa) {
+		double valorCobrado = valor * taxa;
+		return sacar(valor + valorCobrado);
+	}
+	
+	public double depositar(double valor) {
+		if(valor > 0) {
+			this.saldo += valor;
+			return valor;
+		}else {
+			System.out.println("Só é permitido depositar valores maiores que 0!");
+			return 0;
+		}
+	}
+	
+	public static double getTaxaDeManutencao() {
+		return 10.5;
 	}
 	
 }
