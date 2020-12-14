@@ -26,6 +26,10 @@ public class ContaBancaria {
 	public double getSaldo() {
 		return this.saldo;
 	}
+	
+	public void setSaldo(double saldo) {
+		if(saldo >= 0) this.saldo = saldo;
+	}
 
 	public String getNomeTitular() {
 		return nomeTitular;
