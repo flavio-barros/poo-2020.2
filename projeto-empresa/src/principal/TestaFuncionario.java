@@ -24,21 +24,52 @@ public class TestaFuncionario {
 		do {
 			
 			System.out.println(opcoes);
-			System.out.println("Digite a opção: ");
+			System.out.print("Digite a opção: ");
 			
 			opcao = entrada.nextInt();
 			
 			switch(opcao) {
 				case 1:
+					System.out.print("Digite o primeiro nome: ");
+					String primeiroNome = entrada.next();
+					
+					System.out.print("Digite o último nome: ");
+					String ultimoNome = entrada.next();
+					
+					System.out.print("Digite o número de dependentes: ");
+					int dependentes = entrada.nextInt();
+					
+					System.out.print("Digite a idade: ");
+					int idade = entrada.nextInt();
+					
+					System.out.print("Digite função: ");
+					String funcao = entrada.next();
+					
+					System.out.print("Digite o salário: ");
+					double salario = entrada.nextDouble();
+					
+					Funcionario funcionario = new Funcionario(primeiroNome, ultimoNome, dependentes, idade, funcao, salario);
+					
+					funcionarios.add(funcionario);
 					break;
 					
-				case 2: 
+				case 2:
 					break;
 					
 				case 3:
+					System.out.print("Digite o índice do funcionario a ser removido: ");
+					int indice = entrada.nextInt();
+					funcionarios.remove(indice);
 					break;
 					
 				case 4:
+					if(funcionarios.isEmpty()) {
+						System.out.println("Não existem funcionários cadastrados!");
+					}
+					for(Funcionario f : funcionarios) {
+						System.out.println();
+						System.out.println(f.funcionarioToString());
+					}
 					break;
 			}
 			

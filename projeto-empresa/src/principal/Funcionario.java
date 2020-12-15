@@ -1,23 +1,45 @@
 package principal;
 
+import java.util.ArrayList;
+
 public class Funcionario {
 	
+	private final int id;
 	private String primeiroNome;
 	private String ultimoNome;
-	private int dependentes;
+	private ArrayList<Dependente> dependentes;
 	private int idade;
 	private String funcao;
 	private double salario;
 	
+	private static int contador = 0;
+	
+	public Funcionario() {
+		this.id = ++Funcionario.contador;
+	}
+	
 	public Funcionario(String primeiroNome, String ultimoNome, int dependentes, int idade, String funcao,
 			double salario) {
+		this.id = ++Funcionario.contador;
 		this.primeiroNome = primeiroNome;
 		this.ultimoNome = ultimoNome;
-		this.setDependentes(dependentes);
 		this.setIdade(idade);
 		this.funcao = funcao;
 		this.setSalario(salario);
 	}
+	
+	public void incrementarContador() {
+		Funcionario.contador++;
+	}
+	
+	public ArrayList<Dependente> getDependentes() {
+		return dependentes;
+	}
+
+	public void setDependentes(ArrayList<Dependente> dependentes) {
+		this.dependentes = dependentes;
+	}
+
 	public String getPrimeiroNome() {
 		return primeiroNome;
 	}
@@ -35,16 +57,6 @@ public class Funcionario {
 	}
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
-	}
-	public int getDependentes() {
-		return dependentes;
-	}
-	public void setDependentes(int dependentes) {
-		if(dependentes >= 0) this.dependentes = dependentes;
-		else {
-			this.dependentes = 0;
-			System.out.println("Atenção: Não foi possível atribuir o valor de 'dependentes'");
-		}
 	}
 	public int getIdade() {
 		return idade;
@@ -74,5 +86,17 @@ public class Funcionario {
 				"Função: "+this.funcao+"\n"+
 				"Salario: R$"+this.salario;
 		return funcionario;
+	}
+
+	public static int getContador() {
+		return contador;
+	}
+
+	public static void setContador(int contador) {
+		Funcionario.contador = contador;
+	}
+
+	public int getId() {
+		return id;
 	}
 }
